@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Root>
+<Module  name = "MailDeleter"
+	movie       = "MailDeleter\MailDeleter.swf"
+	flags       = "GMF_CFG_STORE_USER_CONFIG"
+	depth_layer = "Top"
+	sub_depth   = "2"
+	variable    = "MailDeleter"
+	criteria    = "MailDeleter &amp;&amp; (guimode &amp; (GUIMODEFLAGS_INPLAY | GUIMODEFLAGS_ENABLEALLGUI))"
+	config_name = "MailDeleter_Cfg"
+	/>
+</Root>
