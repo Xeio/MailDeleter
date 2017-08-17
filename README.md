@@ -1,6 +1,6 @@
 # MailUtil
 
-Adds a "Delete All" and "Take Money" buttons to the mail window that will delete any mail with no attachments, or take all money from mail.
+Adds a "Delete All" and "Take From All" buttons to the mail window that will delete any mail with no attachments, or take all money from mail.
 
 Additionally provides two chat commands to set up automatic mail management tasks:
 
