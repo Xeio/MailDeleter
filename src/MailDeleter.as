@@ -63,7 +63,7 @@ class MailDeleter
 		}
 	}
 	
-	function CheckMail()
+	function CheckMail(mailID)
 	{
 		var mailCounter:Number = 0;
 		for (var i in Tradepost.m_Mail)
@@ -78,7 +78,7 @@ class MailDeleter
 				return;
 			}
 			
-			if (m_autoFetchMoney.GetValue() != undefined && m_mailLimit.GetValue() > 0 && mailCounter > m_mailLimit.GetValue() )
+			if (m_mailLimit.GetValue() != undefined && m_mailLimit.GetValue() > 0 && mailCounter > m_mailLimit.GetValue() )
 			{
 				if (!mailData.m_HasItems && mailData.m_Money == 0)
 				{
@@ -87,7 +87,7 @@ class MailDeleter
 					return;
 				}
 			}
-		}	
+		}
 	}
 	
 	function DeleteMail()
