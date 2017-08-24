@@ -48,11 +48,9 @@ class MailDeleter
 		}
 		
 		Tradepost.SignalMailUpdated.Connect(CheckMail, this);
-		Tradepost.SignalNewMailNotification.Connect(CheckMail, this);
+		Tradepost.SignalNewMail.Connect(UpdateMail, this);
 		
-		Tradepost.UpdateMail();
-		
-		setTimeout(Delegate.create(this, CheckMail), 10000);
+		UpdateMail();
 	}
 	
 	function TradePostOpened()
@@ -61,6 +59,11 @@ class MailDeleter
 		{
 			setTimeout(Delegate.create(this, AddUIElements), 500);
 		}
+	}
+	
+	function UpdateMail()
+	{
+		Tradepost.UpdateMail();
 	}
 	
 	function CheckMail(mailID)
