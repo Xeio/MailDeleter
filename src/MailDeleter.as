@@ -68,10 +68,15 @@ class MailDeleter
 	
 	function CheckMail(mailID)
 	{
+		var oldestMail:MailData;
 		var mailCounter:Number = 0;
 		for (var i in Tradepost.m_Mail)
 		{
 			var mailData:MailData = Tradepost.m_Mail[i];
+			if (!oldestMail || oldestMail.m_SendTime > mailData.m_SendTime)
+			{
+				oldestMail = mailData;
+			}
 			mailCounter++;
 			if (m_autoFetchMoney.GetValue() != undefined && m_autoFetchMoney.GetValue() && mailData.m_Money > 0)
 			{
@@ -83,9 +88,15 @@ class MailDeleter
 			
 			if (m_mailLimit.GetValue() != undefined && m_mailLimit.GetValue() > 0 && mailCounter > m_mailLimit.GetValue() )
 			{
-				if (!mailData.m_HasItems && mailData.m_Money == 0)
+				if (!oldestMail.m_IsRead)
 				{
-					Tradepost.DeleteMail(mailData.m_MailId);
+					Tradepost.MarkAsRead(oldestMail.m_MailId);
+					setTimeout(Delegate.create(this, CheckMail), 1000);				
+					return;
+				}
+				if (!oldestMail.m_HasItems && oldestMail.m_Money == 0)
+				{
+					Tradepost.DeleteMail(oldestMail.m_MailId);
 					setTimeout(Delegate.create(this, CheckMail), 1000);				
 					return;
 				}
