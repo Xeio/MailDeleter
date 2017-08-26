@@ -202,7 +202,7 @@ class MailDeleter
 	{
 		m_confirmDeleteAllPrompt.ShowPrompt(false);
 		m_confirmDeleteAllPrompt.m_Title.text = "DELETE ALL MAIL";
-		m_confirmDeleteAllPrompt.m_Message.htmlText = "Are you sure you want to all mail items without attachments?";
+		m_confirmDeleteAllPrompt.m_Message.htmlText = "Are you sure you want to delete all mail items without attachments?";
 	}
 	
 	public function OnConfirmDeleteAllClicked()
