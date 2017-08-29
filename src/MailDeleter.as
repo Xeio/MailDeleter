@@ -114,7 +114,17 @@ class MailDeleter
 			var mailData:MailData = Tradepost.m_Mail[i];
 			if (!mailData.m_HasItems && mailData.m_Money == 0)
 			{
-				Tradepost.DeleteMail(mailData.m_MailId);
+				if (!mailData.m_IsRead)
+				{
+					//Forcibly set read flag, it doesn't get updated by the MarkAsRead call
+					//If we dont set this, accidentally calling MarkAsRead on an already read mail will hard-lock the client
+					mailData.m_IsRead = true;
+					Tradepost.MarkAsRead(mailData.m_MailId);
+				}
+				else
+				{
+					Tradepost.DeleteMail(mailData.m_MailId);
+				}
 				setTimeout(Delegate.create(this, DeleteMail), 200);
 				return;
 			}
