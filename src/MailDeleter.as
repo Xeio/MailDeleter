@@ -90,6 +90,9 @@ class MailDeleter
 			{
 				if (!oldestMail.m_IsRead)
 				{
+					//Forcibly set read flag, it doesn't get updated by the MarkAsRead call
+					//If we dont set this, accidentally calling MarkAsRead on an already read mail will hard-lock the client
+					oldestMail.m_IsRead = true;
 					Tradepost.MarkAsRead(oldestMail.m_MailId);
 					setTimeout(Delegate.create(this, CheckMail), 1000);				
 					return;
