@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
 <Root>
   <Value name="MailDeleter" value="true" />
+  <Value name="MailDeleter_TradepostMailOnly" value="true" />
   <Archive name="MailDeleter_Cfg" />
 </Root>
