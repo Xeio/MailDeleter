@@ -61,6 +61,11 @@ class MailDeleter
 			if (m_autoFetchMoney.GetValue() != undefined && m_autoFetchMoney.GetValue() && mailData.m_Money > 0)
 			{
 				com.GameInterface.Chat.SignalShowFIFOMessage.Emit("Retrieving " + mailData.m_Money + " marks from mail.", 0);
+				if (!mailData.m_IsRead)
+				{
+					mailData.m_IsRead = true;
+					Tradepost.MarkAsRead(mailData.m_MailId);
+				}
 				Tradepost.GetMailItems(mailData.m_MailId);
 				setTimeout(Delegate.create(this, CheckMail), 1000);				
 				return;
