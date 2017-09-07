@@ -52,6 +52,7 @@ class MailDeleter
 		for (var i in Tradepost.m_Mail)
 		{
 			var mailData:MailData = Tradepost.m_Mail[i];
+			if (!mailData.m_IsSendByTradepost) continue;
 			if (!oldestMail || oldestMail.m_SendTime > mailData.m_SendTime)
 			{
 				oldestMail = mailData;
